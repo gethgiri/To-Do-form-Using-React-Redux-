@@ -166,111 +166,98 @@ return (
     </div>
     <div className="bg-dark container-fluid">
     <div className="row ">
-
     <div className="col-sm-12 col-md-4 col-lg-4 "></div>
-
     <div className="col-sm-12 col-md-4 col-lg-4  ">
     <div className="card login-card ">
     <div className=" card-header ">
     <h3 className="text-center"> TO-DO LIST FORM</h3>
     </div>
 
-                    <div className="card-body">
-                     <form className="form-elements">
-                        <input value={this.state.name} onChange={this.handleName.bind(this)} className="form-control form-inputs form-elements" type="text"  placeholder="user name"/>
-                        <input value={this.state.eventTitle} className="form-control form-inputs form-elements" type="text"   onChange={this.handleEventTitle.bind(this)} placeholder="Event Title"/>
-                        <input value={this.state.details} className="form-control form-inputs form-elements" type="text"   onChange={this.handleDetails.bind(this)} placeholder="Details "/>
-                      </form>
-                    </div>
+              <div className="card-body">
+               <form className="form-elements">
+                  <input value={this.state.name} onChange={this.handleName.bind(this)} className="form-control form-inputs form-elements" type="text"  placeholder="user name"/>
+                  <input value={this.state.eventTitle} className="form-control form-inputs form-elements" type="text"   onChange={this.handleEventTitle.bind(this)} placeholder="Event Title"/>
+                  <input value={this.state.details} className="form-control form-inputs form-elements" type="text"   onChange={this.handleDetails.bind(this)} placeholder="Details "/>
+                </form>
+              </div>
 
-                   <div className="card-footer ">
-
-                    <button onClick={this.submitHandle.bind(this)} type="submit"  className="btn-primary offset-lg-1 offset-md-0  btn-sm ">Create</button>
-
-                    <button type="reset"  className="btn-primary  offset-lg-5  offset-md-0 btn-sm" onClick={this.cancelData.bind(this)}>cancel</button>
-
-
-                   </div>
+              <div className="card-footer ">
+                <button onClick={this.submitHandle.bind(this)} type="submit"  className="btn-primary offset-lg-1 offset-md-0  btn-sm ">Create</button>
+                <button type="reset"  className="btn-primary  offset-lg-5  offset-md-0 btn-sm" onClick={this.cancelData.bind(this)}>cancel</button>
+              </div>
 
         </div>
     </div>
     <div className="col-sm-12 col-md-4 col-lg-4 ">
-     
-     
-
-
     </div>
-
     </div>
 
 
+      <div className="container-fluid  bg-dark">
 
+      <div className="row ">
+                          
+           
+         {(this.state.dbUserDetails.map((data,id)=>{
+              if(id ===this.state.toggleIndex){
 
-        <div className="container-fluid  bg-dark">
+                return(
+                <div className="col-sm-12 col-md-6 col-lg-4">
+                <div className="card todo-card">
+                <div className="card-header">
+                <input type="text" onChange={this.updateName.bind(this)} defaultValue ={data.namevalue}/>
 
-        <div className="row ">
-                            
-             
-           {(this.state.dbUserDetails.map((data,id)=>{
-                if(id ===this.state.toggleIndex){
-
-                  return(
-                  <div className="col-sm-12 col-md-6 col-lg-4">
-                  <div className="card todo-card">
-                  <div className="card-header">
-                  <input type="text" onChange={this.updateName.bind(this)} defaultValue ={data.namevalue}/>
-
-                   </div>
-                    <div className="card-title offset-3 " >
-                     <input type="text" onChange={this.updateEventTitle.bind(this)}  defaultValue ={data.eventTitlevalue}/>
-                     </div>
-                    <div className="card-body">
-                    <input type="text" onChange={this.updateDetails.bind(this)} defaultValue ={data.detailsvalue}/>
-
-                    </div>
-                    <div className="card-footer">
-                         <button className="bt btn-success"onClick={this.editUpdateCard.bind(this, data, id)}>Update</button>
-                         <button className="bt btn-warning" onClick={this.deletecard.bind(this,id)}>Delete</button>
-                    
-                    </div>
-                    </div>
-                    </div>
-                  ); 
-                }
-
-
-
-                   return(
-
-                  <div className="col-sm-12 col-md-6 col-lg-4">
-                   
-                  <div className="card todo-card">
-                  <div className="card-header">
-                  <span class="badge badge-secondary">Total Task-Remaining -{id+1}</span>
-                   
-                  <h5>{data.namevalue}'s reminder</h5>
+                </div>
+                  <div className="card-title offset-3 " >
+                   <input type="text" onChange={this.updateEventTitle.bind(this)}  defaultValue ={data.eventTitlevalue}/>
+                  </div>
+                  <div className="card-body">
+                  <input type="text" onChange={this.updateDetails.bind(this)} defaultValue ={data.detailsvalue}/>
 
                   </div>
-
-                    <div className="card-title text-center">
-                       <h3><p><ins>{data.eventTitlevalue}</ins></p></h3>
-                   </div>
-                    <div className="card-body">
-                    <h5>{data.detailsvalue}</h5>
-
-                    </div>
-                      <div className="card-footer">
-                         <button className="bt btn-success"onClick={this.editCard.bind(this,id) } >Edit</button>
+                  <div className="card-footer">
+                       <button className="bt btn-success"onClick={this.editUpdateCard.bind(this, data, id)}>Update</button>
                        <button className="bt btn-warning" onClick={this.deletecard.bind(this,id)}>Delete</button>
-                      </div>
-                     </div>
-                     </div>
-                  );
-              }))}
+                  
+                  </div>
+                  </div>
+                  </div>
+                ); 
+              }
 
-          
-        </div>
-        </div>
+
+
+                return(
+
+                <div className="col-sm-12 col-md-6 col-lg-4">
+                 
+                <div className="card todo-card">
+                <div className="card-header">
+                <span class="badge badge-secondary">Total Task-Remaining -{id+1}</span>
+                 
+                <h5>{data.namevalue}'s reminder</h5>
+
+                </div>
+
+                <div className="card-title text-center">
+                     <h3><p><ins>{data.eventTitlevalue}</ins></p></h3>
+                </div>
+                  <div className="card-body">
+                  <h5>{data.detailsvalue}</h5>
+
+                  </div>
+                    <div className="card-footer">
+                       <button className="bt btn-success"onClick={this.editCard.bind(this,id) } >Edit</button>
+                     <button className="bt btn-warning" onClick={this.deletecard.bind(this,id)}>Delete</button>
+                    </div>
+                   </div>
+                   </div>
+                );
+            }))}
+
+        
+      </div>
+      </div>
       </div>
        
  <div className="footer footer-copyright" style={{background:'#e9ecef'}}>
